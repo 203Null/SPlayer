@@ -44,7 +44,7 @@
               <div class="btn-icon mode-icon" @click.stop="player.toggleShuffle()">
                 <SvgIcon
                   :name="statusStore.shuffleIcon"
-                  :size="20"
+                  :size="33"
                   :depth="statusStore.shuffleMode === 'off' ? 3 : 1"
                 />
               </div>
@@ -55,11 +55,11 @@
               class="btn-icon"
               v-debounce="() => songManager.personalFMTrash(musicStore.personalFMSong?.id)"
             >
-              <SvgIcon class="icon" :size="18" name="ThumbDown" />
+              <SvgIcon class="icon" :size="28" name="ThumbDown" />
             </div>
             <!-- 上一曲 -->
             <div v-else class="btn-icon" v-debounce="() => player.nextOrPrev('prev')">
-              <SvgIcon :size="26" name="SkipPrev" />
+              <SvgIcon :size="40" name="SkipPrev" />
             </div>
             <!-- 播放暂停 -->
             <n-button
@@ -78,21 +78,21 @@
                   <SvgIcon
                     :key="statusStore.playStatus ? 'Pause' : 'Play'"
                     :name="statusStore.playStatus ? 'Pause' : 'Play'"
-                    :size="28"
+                    :size="42"
                   />
                 </Transition>
               </template>
             </n-button>
             <!-- 下一曲 -->
             <div class="btn-icon" v-debounce="() => player.nextOrPrev('next')">
-              <SvgIcon :size="26" name="SkipNext" />
+              <SvgIcon :size="40" name="SkipNext" />
             </div>
             <!-- 循环按钮 -->
             <template v-if="musicStore.playSong.type !== 'radio' && !statusStore.personalFmMode">
               <div class="btn-icon mode-icon" @click.stop="player.toggleRepeat()">
                 <SvgIcon
                   :name="statusStore.repeatIcon"
-                  :size="20"
+                  :size="33"
                   :depth="statusStore.repeatMode === 'off' ? 3 : 1"
                 />
               </div>
@@ -141,7 +141,7 @@ const showControls = computed(() => {
 <style lang="scss" scoped>
 .player-control {
   width: 100%;
-  height: 80px;
+  height: 120px;
   overflow: hidden;
   cursor: pointer;
   .control-content {
@@ -161,18 +161,20 @@ const showControls = computed(() => {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 8px;
-      border-radius: 8px;
+      width: 66px;
+      height: 66px;
+      padding: 14px;
+      border-radius: 16px;
       transition:
         background-color 0.3s,
         transform 0.3s;
       cursor: pointer;
       .n-icon {
-        font-size: 24px;
+        font-size: 30px;
         color: rgb(var(--main-cover-color));
       }
       &:hover {
-        transform: scale(1.1);
+        transform: scale(1.04);
         background-color: rgba(var(--main-cover-color), 0.14);
       }
       &:active {
@@ -188,7 +190,7 @@ const showControls = computed(() => {
   }
   .center {
     height: 100%;
-    max-height: 80px;
+    max-height: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -201,8 +203,8 @@ const showControls = computed(() => {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 38px;
-        height: 38px;
+        width: 52px;
+        height: 52px;
         border-radius: 50%;
         will-change: transform;
         transition:
@@ -215,7 +217,7 @@ const showControls = computed(() => {
           color: rgb(var(--main-cover-color));
         }
         &:hover {
-          transform: scale(1.1);
+          transform: scale(1.08);
           background-color: rgba(var(--main-cover-color), 0.14);
         }
         &:active {
@@ -223,8 +225,8 @@ const showControls = computed(() => {
         }
       }
       .play-pause {
-        --n-width: 44px;
-        --n-height: 44px;
+        --n-width: 60px;
+        --n-height: 60px;
         --n-color: rgba(var(--main-cover-color), 0.14);
         --n-color-hover: rgba(var(--main-cover-color), 0.2);
         --n-color-focus: rgba(var(--main-cover-color), 0.2);
@@ -242,7 +244,7 @@ const showControls = computed(() => {
           color: rgb(var(--main-cover-color));
         }
         &:hover {
-          transform: scale(1.1);
+          transform: scale(1.08);
         }
         &:active {
           transform: scale(1);
@@ -254,13 +256,13 @@ const showControls = computed(() => {
       flex-direction: row;
       align-items: center;
       width: 100%;
-      max-width: 480px;
-      font-size: 12px;
+      max-width: 560px;
+      font-size: 13px;
       cursor: pointer;
       .n-slider {
         margin: 6px 8px;
-        --n-handle-size: 12px;
-        --n-rail-height: 4px;
+        --n-handle-size: 14px;
+        --n-rail-height: 5px;
       }
       span {
         opacity: 0.6;
