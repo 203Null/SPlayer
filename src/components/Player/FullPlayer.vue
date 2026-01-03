@@ -8,6 +8,7 @@
         }"
         :class="['full-player', { 'show-comment': isShowComment }]"
         @mouseleave="playerLeave"
+        @dblclick="togglePlay"
       >
         <!-- 背景 -->
         <PlayerBackground />
@@ -79,11 +80,13 @@
 
 <script setup lang="ts">
 import { useStatusStore, useMusicStore, useSettingStore } from "@/stores";
+import { usePlayerController } from "@/core/player/PlayerController";
 import { isElectron } from "@/utils/env";
 
 const musicStore = useMusicStore();
 const statusStore = useStatusStore();
 const settingStore = useSettingStore();
+const player = usePlayerController();
 
 /** 封面主颜色 */
 const mainCoverColor = useCssVar("--main-cover-color", document.documentElement);
@@ -188,6 +191,10 @@ onBeforeUnmount(() => {
   stopShow();
   if (isElectron) window.electron.ipcRenderer.send("prevent-sleep", false);
 });
+
+const togglePlay = () => {
+  player.playOrPause();
+};
 </script>
 
 <style lang="scss" scoped>
