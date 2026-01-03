@@ -9,6 +9,10 @@
         :class="['full-player', { 'show-comment': isShowComment }]"
         @mouseleave="playerLeave"
         @dblclick="togglePlay"
+        @pointerdown="onPullStart"
+        @pointermove="onPullMove"
+        @pointerup="onPullEnd"
+        @pointercancel="onPullEnd"
       >
         <!-- 背景 -->
         <PlayerBackground />
@@ -194,6 +198,30 @@ onBeforeUnmount(() => {
 
 const togglePlay = () => {
   player.playOrPause();
+};
+
+// 下拉退出全屏：从顶部开始拖动，下拉超过阈值时退出
+const pullStartY = ref<number | null>(null);
+const pullThreshold = 150;
+const pullTopZone = 140;
+
+const onPullStart = (event: PointerEvent) => {
+  if (event.pointerType === "mouse" && event.button !== 0) return;
+  if (event.clientY > pullTopZone) return;
+  pullStartY.value = event.clientY;
+};
+
+const onPullMove = (event: PointerEvent) => {
+  if (pullStartY.value === null) return;
+  const deltaY = event.clientY - pullStartY.value;
+  if (deltaY >= pullThreshold) {
+    statusStore.showFullPlayer = false;
+    pullStartY.value = null;
+  }
+};
+
+const onPullEnd = () => {
+  pullStartY.value = null;
 };
 </script>
 
