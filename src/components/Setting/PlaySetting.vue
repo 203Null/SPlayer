@@ -259,6 +259,17 @@
       </n-card>
       <n-card class="set-item">
         <div class="label">
+          <n-text class="name">播放器其他控制自动隐藏</n-text>
+          <n-text class="tip" :depth="3">关闭后播放器中的其他控制按钮将始终显示</n-text>
+        </div>
+        <n-switch
+          v-model:value="settingStore.autoHidePlayerOtherControls"
+          class="set"
+          :round="false"
+        />
+      </n-card>
+      <n-card class="set-item">
+        <div class="label">
           <n-text class="name">隐藏全屏下载按钮</n-text>
           <n-text class="tip" :depth="3">隐藏全屏播放器中的单曲下载入口</n-text>
         </div>

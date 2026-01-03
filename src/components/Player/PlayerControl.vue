@@ -1,7 +1,7 @@
 <template>
-  <div class="player-control">
+<div :class="['player-control', { 'always-show': !settingStore.autoHidePlayerOtherControls }]">
     <Transition name="fade" mode="out-in">
-      <div v-show="statusStore.playerMetaShow" class="control-content" @click.stop>
+      <div v-show="showControls" class="control-content" @click.stop>
         <n-flex class="left" align="center">
           <!-- 喜欢歌曲 -->
           <div
@@ -121,6 +121,7 @@ import { useDataStore, useMusicStore, useSettingStore, useStatusStore } from "@/
 import { toLikeSong } from "@/utils/auth";
 import { useTimeFormat } from "@/composables/useTimeFormat";
 import { openDownloadSong, openPlaylistAdd } from "@/utils/modal";
+import { computed } from "vue";
 
 const dataStore = useDataStore();
 const musicStore = useMusicStore();
@@ -131,6 +132,10 @@ const songManager = useSongManager();
 const player = usePlayerController();
 
 const { timeDisplay, toggleTimeFormat } = useTimeFormat();
+
+const showControls = computed(() => {
+  return !settingStore.autoHidePlayerOtherControls || statusStore.playerMetaShow;
+});
 </script>
 
 <style lang="scss" scoped>
@@ -263,6 +268,12 @@ const { timeDisplay, toggleTimeFormat } = useTimeFormat();
     }
   }
   &:hover {
+    .left,
+    .right {
+      opacity: 1;
+    }
+  }
+  &.always-show {
     .left,
     .right {
       opacity: 1;

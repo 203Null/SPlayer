@@ -141,6 +141,8 @@ export interface SettingState {
   playerBackgroundFlowSpeed: number;
   /** 播放器元素自动隐藏 */
   autoHidePlayerMeta: boolean;
+  /** 播放器其他控制自动隐藏 */
+  autoHidePlayerOtherControls: boolean;
   /** 记忆最后进度 */
   memoryLastSeek: boolean;
   /** 显示进度条悬浮信息 */
@@ -342,6 +344,7 @@ export const useSettingStore = defineStore("setting", {
     playerBackgroundFps: 30,
     playerBackgroundFlowSpeed: 4,
     autoHidePlayerMeta: true,
+    autoHidePlayerOtherControls: true,
     memoryLastSeek: true,
     progressTooltipShow: true,
     progressAdjustLyric: false,
