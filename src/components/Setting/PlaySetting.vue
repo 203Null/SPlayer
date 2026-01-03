@@ -259,6 +259,13 @@
       </n-card>
       <n-card class="set-item">
         <div class="label">
+          <n-text class="name">隐藏全屏下载按钮</n-text>
+          <n-text class="tip" :depth="3">隐藏全屏播放器中的单曲下载入口</n-text>
+        </div>
+        <n-switch v-model:value="settingStore.hideFullPlayerDownload" class="set" :round="false" />
+      </n-card>
+      <n-card class="set-item">
+        <div class="label">
           <n-text class="name">展示播放状态信息</n-text>
           <n-text class="tip" :depth="3">展示当前歌曲及歌词的状态信息</n-text>
         </div>

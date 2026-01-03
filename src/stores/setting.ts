@@ -291,6 +291,8 @@ export interface SettingState {
     /** 显示模式 */
     displayMode: "name" | "state" | "details";
   };
+  /** 隐藏全屏播放器下载按钮 */
+  hideFullPlayerDownload: boolean;
 }
 
 export const useSettingStore = defineStore("setting", {
@@ -443,6 +445,7 @@ export const useSettingStore = defineStore("setting", {
       showWhenPaused: true,
       displayMode: "name",
     },
+    hideFullPlayerDownload: false,
   }),
   getters: {
     /**

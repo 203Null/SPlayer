@@ -23,7 +23,7 @@
           <!-- 下载 -->
           <div
             class="menu-icon"
-            v-if="!musicStore.playSong.path"
+            v-if="!musicStore.playSong.path && !settingStore.hideFullPlayerDownload"
             @click.stop="openDownloadSong(musicStore.playSong)"
           >
             <SvgIcon name="Download" />
@@ -117,7 +117,7 @@
 <script setup lang="ts">
 import { usePlayerController } from "@/core/player/PlayerController";
 import { useSongManager } from "@/core/player/SongManager";
-import { useDataStore, useMusicStore, useStatusStore } from "@/stores";
+import { useDataStore, useMusicStore, useSettingStore, useStatusStore } from "@/stores";
 import { toLikeSong } from "@/utils/auth";
 import { useTimeFormat } from "@/composables/useTimeFormat";
 import { openDownloadSong, openPlaylistAdd } from "@/utils/modal";
@@ -125,6 +125,7 @@ import { openDownloadSong, openPlaylistAdd } from "@/utils/modal";
 const dataStore = useDataStore();
 const musicStore = useMusicStore();
 const statusStore = useStatusStore();
+const settingStore = useSettingStore();
 
 const songManager = useSongManager();
 const player = usePlayerController();
